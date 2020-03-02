@@ -1,0 +1,185 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>主页</title>
+    <!--    <link th:href="@{/css/floating-labels.css}"  type="text/css">-->
+    <link rel="apple-touch-icon" href="" sizes="180x180">
+    <!--现今移动设备越来越多，苹果为iOS设备配备了apple-touch-icon私有属性，添加该属性，在iPhone,iPad,iTouch的safari浏览器上可以使用添加到主屏按钮将网站添加到主屏幕上，方便用户以后访问。       -->
+    <link rel="icon" href="" sizes="32x32" type="image/png">
+    <link rel="icon" href="" sizes="16x16" type="image/png">
+    <link rel="icon" href="favicon.ico">
+    <!--    <link rel="manifest" href="&lt;!&ndash;/manifest.json&ndash;&gt;">-->
+    <!--manifest 文件是一个简单的文本文件，列举出了浏览器用于离线访问而缓存的资源。    -->
+    <link rel="mask-icon" href="" color="#563d7c">
+    <!--    自从苹果升级为带Touch Bar的新Macbook Pro之后，每次打开Safari浏览器的时候，空白页面，在Touch Bar区域会显示Safari的收藏栏内容https://blog.ecdo.cn/post/582/%E4%B8%BA%E7%BD%91%E7%AB%99%E5%A2%9E%E5%8A%A0%E6%BC%82%E4%BA%AE%E7%9A%84mask-icon/-->
+    <meta name="msapplication-config" content="/docs/4.3/assets/img/favicons/browserconfig.xml">
+    <!--参考启动配置文件，参考https://blog.csdn.net/freshlover/article/details/25322839   -->
+    <meta name="theme-color" content="#563d7c">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--参考手机的主题颜色，参考https://www.crifan.com/html_meta_theme_color_meaning/    -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon1.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <script th:src="@{/js/jquery-3.4.1.slim.min.js}" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/floating-labels.css}" rel="stylesheet">
+</head>
+<body>
+    <script>
+        var login_tab=document.querySelector("#login-tab");
+        var register_tab=document.querySelector("#register-tab");
+        login_tab.add(function () {
+            click(window.location.href("http://localhost:8081/login"))
+        })
+        register_tab.add(function () {
+            click(window.location.href("http://localhost:8081/register"))
+        })
+    </script>
+    <div class="card form-signin">
+        <div class="logo">
+            <a class="navbar-brand col-5" href="http://localhost:8081/">
+                <svg class="bd-placeholder-img mylogo img-responsive"
+                     width="100" height="100"
+                     xmlns="http://www.w3.org/2000/svg"
+                     preserveAspectRatio="xMidYMid slice"
+                     focusable="false" role="img">
+                    <image  xlink:href="img/logo.svg" width="150%" height="150%"/>
+                </svg>
+            </a>
+        </div>
+        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+        <div class="card-header title">
+            <div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link " th:classappend="${pagePanel}=='loginPanel'? 'active':''" id="login-tab"  role="tab"  aria-selected="true"  href="http://localhost:8081/login">登录</a>
+                        <a class="nav-item nav-link " th:classappend="${pagePanel}=='registerPanel'? 'active':''" id="register-tab"  href="http://localhost:8081/register" role="tab"  aria-selected="true">注册</a>
+                    </div>
+                </nav>
+
+                <div class="tab-content" id="nav-tabContent" th:switch="${pagePanel}">
+                    <div th:case="'loginPanel'"  class="tab-pane fade show active" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+                        <form  th:action="@{/login}" method="post" >
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <svg class="bd-placeholder-img"
+                                         width="15" height="15"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         preserveAspectRatio="xMidYMid slice"
+                                         focusable="false" role="img"
+                                         aria-label="Placeholder: Thumbnail">
+                                            <image  xlink:href="img/default_ava2.svg" width="100%" height="100%"/>
+                                        </svg>
+                                  </span>
+                                </div>
+                                <input type="text" name="username" class="form-control" placeholder="邮箱或账号">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <svg class="bd-placeholder-img"
+                                         width="15" height="15"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         preserveAspectRatio="xMidYMid slice"
+                                         focusable="false" role="img"
+                                         aria-label="Placeholder: Thumbnail">
+                                            <image  xlink:href="img/lock.svg" width="100%" height="100%"/>
+                                        </svg>
+                                  </span>
+                                </div>
+                                <input type="password" name="password" class="form-control" placeholder="密码">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="checkbox"  value="true" checked="checked" ></input>
+                                <font color="black">记住我</font>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                            <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+                        </form>
+                    </div>
+
+                    <div th:case="'registerPanel'" class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="login-tab">
+                        <form  th:action="@{/register}" method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <svg class="bd-placeholder-img"
+                                         width="15" height="15"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         preserveAspectRatio="xMidYMid slice"
+                                         focusable="false" role="img"
+                                         aria-label="Placeholder: Thumbnail">
+                                            <image  xlink:href="img/default_ava2.svg" width="100%" height="100%"/>
+                                        </svg>
+                                  </span>
+                                </div>
+                                <input type="text" name="username" class="form-control" placeholder="昵称">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <svg class="bd-placeholder-img"
+                                         width="15" height="15"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         preserveAspectRatio="xMidYMid slice"
+                                         focusable="false" role="img"
+                                         aria-label="Placeholder: Thumbnail">
+                                            <image  xlink:href="img/email.svg" width="100%" height="100%"/>
+                                        </svg>
+                                  </span>
+                                </div>
+                                <input type="text" name="email" class="form-control" placeholder="邮箱">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <svg class="bd-placeholder-img"
+                                         width="15" height="15"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         preserveAspectRatio="xMidYMid slice"
+                                         focusable="false" role="img"
+                                         aria-label="Placeholder: Thumbnail">
+                                            <image  xlink:href="img/lock.svg" width="100%" height="100%"/>
+                                        </svg>
+                                  </span>
+                                </div>
+                                <input type="password" name="password" class="form-control" placeholder="设置密码">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="checkbox"  value="true" checked="checked" ></input>
+                                <font color="black">记住我</font>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+                            <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

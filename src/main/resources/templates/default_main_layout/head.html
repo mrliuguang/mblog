@@ -1,0 +1,130 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+    <head th:fragment="common(title,links,js,meta)">
+        <title th:replace="${title}"/>
+        <th:block th:replace="${links}"/>
+        <th:block th:replace="${js}" />
+        <th:block th:replace="${meta}"/>
+        <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+        <link th:href="@{/css/blog.css}" rel="stylesheet" type="text/css">
+        <!--        -->
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+            /* 首页的二级推荐图片css*/
+        </style>
+    </head>
+<body>
+    <div th:fragment="HeadContainer" class="container ">
+        <div th:fragment="commonhead">
+            <header  class="blog-header py-3 bg-white">
+                <div class=" row flex-nowrap justify-content-between align-items-center">
+                    <div class="col-4 pt-1">
+                        <a class="text-muted" href="#">订阅</a>
+                    </div>
+                    <div class="col-4 text-center mylogo">
+                        <a class="navbar-brand mr-0 mr-md-2" href="http://localhost:8081/">
+                            <img th:src="@{/img/logo.svg}"
+                                 class="bd-placeholder-img mylogo img-responsive"
+                                 width="100" height="100"  type="image/svg+xml">
+                        </a>
+                    </div>
+
+                    <div class="col-4 d-flex justify-content-end align-items-center">
+                　　  　<shiro:notAuthenticated>　　
+                            <a class="btn btn-group-sm btn-outline-secondary" href="http://localhost:8081/login">登录</a>
+                            <a class="btn btn-group-sm btn-outline-secondary" href="http://localhost:8081/register">注册</a>
+                        </shiro:notAuthenticated>
+                        <shiro:authenticated>
+                            <div class="nav-item dropdown">
+                                <li class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="mya" href="http://localhost:8081/">
+                                            <img th:src="@{/img/default_ava.svg}"
+                                                 class="bd-placeholder-img "
+                                                 width="15" height="15"  type="image/svg+xml">
+                                    </a>
+                                </li>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/users">我的主页</a>
+                                    <a class="dropdown-item" href="/settings/profile">编辑资料</a>
+                                    <a class="dropdown-item" href="/admin">后台管理</a>
+                                    <a class="dropdown-item" href="http://localhost:8081/logout">退出</a>
+                                </div>
+                            </div>
+                            <a class="mya" href="/toEdit">
+                                    <img th:src="@{/img/write.svg}"
+                                         class="bd-placeholder-img"
+                                         width="25" height="25"  type="image/svg+xml">
+                                写博客
+                            </a>
+                        </shiro:authenticated>
+                    </div>
+                </div>
+            </header>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="http://localhost:8081/">MBLOG</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <shiro:authenticated>
+                            <a class="nav-link" href="http://localhost:8081/users/1">我的主页</a>
+                        </shiro:authenticated>
+                        <!--自定义col标签显示栏目<a col:id="1" ></a>-->
+                        <li class="nav-item" th:each="column : ${#servletContext.getAttribute('columns')}">
+                            <a class="nav-link " th:classappend="${column.columnValue==page}? 'active':''" th:text="${column.columnName}" th:href="'http://localhost:8081/column/'+${column.columnValue}"/>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                更多
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ml-md-auto">
+                        <form class="nav-item form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-group-sm btn-outline-secondary" type="submit">搜索</button>
+                        </form>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="d-flex flex-row jumbotron p-4 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic">强推博文</h1>
+                <p class="lead my-3">博文简介:利用无序列表等标签,但是整了一下午都没能把背景图片显示出来...Thymeleaf设置背景报错 我在网上看到....</p>
+                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">继续阅读</a></p>
+            </div>
+            <div class="col-md-6 ">
+                <img class="img-rounded img-fluid" th:src="@{/img/pic1.jpg}" />
+            </div>
+        </div>
+
+
+    </div><!-- /.container-fluid -->
+</body>
+</html>

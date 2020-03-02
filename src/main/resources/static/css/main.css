@@ -1,0 +1,109 @@
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 {
+    font-family: '楷体',Tahoma, Microsoft YaHei, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+.carousel-control-prev:hover, .carousel-control-prev:focus,
+.carousel-control-next:hover,
+.carousel-control-next:focus {
+    color: #212529;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
+    background: no-repeat 50% / 100% -100%;
+
+}
+.carousel-control-prev-icon{
+    background-image: url('../img/left.svg')
+    }
+.carousel-control-next-icon {background-image: url('../img/right.svg')}
+.mya{
+    color: #212529;
+}
+.mylogo{
+    margin-top: -20px;
+    margin-bottom: -20px;
+    max-width: 100%;
+    float: left;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 160px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 160px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+code {
+    font-size: 80%;
+}
+.mydiv{
+    width: 200px;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 1.125rem;
+    text-anchor: middle;
+    user-select: none;
+    webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.mythumbnail{
+    background-color: #666666;
+}
+.list-group .list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.user-datas {
+    padding: 5px 0;
+}
+.myul{
+    list-style: none;
+}
+@media (min-width: 768px) {
+    .h-md-50 { height: 50%; }
+}
+.inherit{
+    height: inherit;
+    width: inherit;
+}
+.inwidth{
+    width: inherit;
+}
+.inheight{
+    height: inherit;
+}
+.edit{
+    background-color: #d0d0d0;
+    hight: 70%;
+    width: 75%;
+}
+.mycard{
+    margin: 20px;
+}
+.margintop{
+    margin-top: 20px;
+}
+.marginleft{
+    margin-left: 20px;
+}
+.marginright{
+    margin-right: 20px;
+}
+.marginbottom{
+    margin-bottom: 20px;
+}
+.h-md-800{
+    height: 800px;
+}

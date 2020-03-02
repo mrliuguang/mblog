@@ -1,0 +1,36 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <head th:fragment="common(title,links,js,meta)">
+        <title th:replace="${title}"/>
+        <th:block th:replace="${links}"/>
+        <th:block th:replace="${js}" />
+        <th:block th:replace="${meta}"/>
+        <link th:href="@{/static/css/main.css}" rel="stylesheet" type="text/css">
+        <link th:href="@{/static/css/blog.css}" rel="stylesheet" type="text/css">
+        <!--        -->
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+            /* 首页的二级推荐图片css*/
+        </style>
+    </head>
+<body>
+<footer th:fragment="Footer" class="footer blog-footer bg-white">
+    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>
+        <a href="https://getbootstrap.com/docs/4.4/examples/blog/#">Back to top</a>
+    </p>
+</footer>
+</body>
+</html>

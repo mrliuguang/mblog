@@ -1,0 +1,107 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <head th:fragment="common(title,links,js,meta)">
+        <title th:replace="${title}"/>
+        <th:block th:replace="${links}"/>
+        <th:block th:replace="${js}" />
+        <th:block th:replace="${meta}"/>
+        <link th:href="@{/static/css/main.css}" rel="stylesheet" type="text/css">
+        <link th:href="@{/static/css/blog.css}" rel="stylesheet" type="text/css">
+        <!--        -->
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+            /* 首页的二级推荐图片css*/
+        </style>
+    </head>
+<body>
+<main th:fragment="MainContainer" role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 mb-2 caro blog-main" >
+            <div class="col-md-12">
+                <div class="row no-gutters border rounded overflow-hidden bg-white flex-md-row mb-4 shadow-sm h-md-250 position-relative" th:each="column : ${#servletContext.getAttribute('columns')}">
+                    <div class="col p-4 d-flex flex-column position-static" >
+                        <strong class="d-inline-block mb-2 text-primary">世界</strong>
+                        <h3 class="mb-0">精选文章</h3>
+                        <div class="mb-1 text-muted">十一 12</div>
+                        <p class="card-text mb-auto">这是一张较宽的卡片，带有以下支持文字，是添加其他内容的天然指南.</p>
+                        <a href="#" class="stretched-link">继续阅读</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+<!--                        <svg class="bd-placeholder-img"-->
+<!--                             width="200" height="250"-->
+<!--                             xmlns="http://www.w3.org/2000/svg"-->
+<!--                             preserveAspectRatio="xMidYMid slice"-->
+<!--                             focusable="false" role="img"-->
+<!--                             aria-label="Placeholder: Thumbnail">-->
+<!--                            xmlns:xlink="http://www.w3.org/1999/xlink">-->
+<!--                            &lt;!&ndash;判断路径图片是否存在，没有显示灰色矩形缩略图&ndash;&gt;-->
+<!--                            &lt;!&ndash;th:switch="${ 图片路径对应的属性 != null } 参考https://blog.csdn.net/beguile/article/details/86748011&ndash;&gt;-->
+
+<!--                            <rect  width="100%" height="100%" fill="rgba(0,0,0,0.6)" stroke-width="1" />-->
+<!--                            <text text-anchor="start"-->
+<!--                                  font-family="Microsoft Yahei, sans-serif" font-size="28"-->
+<!--                                  x="20" y="322" fill="#fff"></text>-->
+<!--                        </svg>-->
+                        <div class="mydiv media mythumbnail">
+                            <img th:src="@{/img/pic1.jpg}"
+                                 class="bd-placeholder-img align-self-center mx-auto"
+                                 width="100" height="100"  type="image/svg+xml">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar ">
+            <div class="p-4 mb-3 bg-white rounded">
+                <h4 class="font-italic">热门文章</h4>
+                <li class="nav-item" th:each="column : ${#servletContext.getAttribute('columns')}">
+                    <a class="nav-link " th:classappend="${column.columnValue==page}? 'active':''" th:text="${column.columnName}" th:href="'http://localhost:8081/column/'+${column.columnValue}"/>
+                </li>
+            </div>
+
+            <div class="p-4 bg-white">
+                <h4 class="font-italic">发布时间</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="#">2014年3月</a></li>
+                    <li><a href="#">2014年2月</a></li>
+                    <li><a href="#">2014年1月</a></li>
+                    <li><a href="#">2013年12月</a></li>
+                    <li><a href="#">2013年11月</a></li>
+                    <li><a href="#">2013年10月</a></li>
+                    <li><a href="#">2013年9月</a></li>
+                    <li><a href="#">2013年8月</a></li>
+                    <li><a href="#">2013年7月</a></li>
+                    <li><a href="#">2013年6月</a></li>
+                    <li><a href="#">2013年5月</a></li>
+                    <li><a href="#">2013年4月</a></li>
+                </ol>
+            </div>
+
+            <div class="p-4 bg-white">
+                <h4 class="font-italic">其他来源</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </aside><!-- /.blog-sidebar -->
+    </div><!-- /.row -->
+
+</main>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head th:fragment="common(title,links,js,meta)">
+    <title th:replace="${title}"/>
+    <th:block th:replace="${links}"/>
+    <th:block th:replace="${js}" />
+    <th:block th:replace="${meta}"/>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        #editor {
+            color: #000;
+            box-shadow: 0 2px 5px #000;
+            background: #eee;
+            padding: 10px 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        /* 首页的二级推荐图片css*/
+    </style>
+</head>
+<body>
+<div  th:fragment="from" class="margintop container inwidth ">
+
+    <div  class="row inwidth">
+        <div class=" col-xs-12 col-md-9">
+            <div class="bg-white inwidth">
+                <input type="text" class="form-control mb-3" placeholder="请输入标题" >
+            </div>
+            <div id="editor" class="mb-5"></div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.8.3/tinymce.min.js"></script>
+            <script>
+                tinymce.init({
+                    selector: '#editor',
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                        'advlist autolink lists link image charmap print preview anchor textcolor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table contextmenu paste code help wordcount'
+                    ],
+                    toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+
+                    /** Init MarkdownIME when TinyMCE is ready: */
+                    setup: function (ed) {
+                        ed.on('init', function (args) {
+                            MarkdownIME.Bookmarklet(window)
+                        });
+                    }
+                });
+            </script>
+
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="bg-white row no-gutters border rounded  mb-4  h-md-250 position-relative">
+                <ul class="inherit list-group no-gutters col-12">
+                    <li class="h-md-50 list-group-item text-center ">
+                        <a class="col-12" href="">
+                            <img th:src="@{/img/default_ava.svg}" class="bd-placeholder-img" width="25" height="25"  type="image/svg+xml">
+                        </a>
+                        <div >名字</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row" inherit>
+                            <div class="myul col-6 border-right">发布</div>
+                            <div class="myul col-6">评论</div>
+
+                        </div>
+                    </li>
+                    <button type="button" class="btn m-auto text-center rounded btn-secondary">编辑个人资料</button>
+                    <!--                        <a class="m-auto text-center rounded edit">编辑个人资料</a>-->
+                </ul>
+            </div>
+            <div class="  no-gutters border rounded  mb-4 shadow-sm h-md-250 ">
+                <nav class="mynavar inherit navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand d-md-none" href="http://localhost:8081/demo">导航</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav row mr-auto">
+                            <li class="nav-item col-12  border-bottom">
+
+                                <a class="nav-link" href="#">
+                                    <img th:src="@{/img/menu.svg}"
+                                         class="bd-placeholder-img "
+                                         width="20" height="20"  type="image/svg+xml">  发表的文字</a>
+                            </li>
+                            <li class="nav-item col-12  border-bottom">
+                                <a class="nav-link" href="#">
+                                    <img th:src="@{/img/comment.svg}"
+                                         class="bd-placeholder-img "
+                                         width="20" height="20"  type="image/svg+xml">  发表的评论</a>
+                            </li>
+                            <li class="nav-item col-12 border-bottom">
+                                <a class="nav-link" href="#">
+                                    <img th:src="@{/img/favor.svg}"
+                                         class="bd-placeholder-img "
+                                         width="20" height="20"  type="image/svg+xml">  收藏的文字</a>
+                            </li>
+                            <li class="nav-item col-12  border-bottom">
+                                <a class="nav-link" href="#">
+                                    <img th:src="@{/img/news.svg}"
+                                         class="bd-placeholder-img "
+                                         width="20" height="20"  type="image/svg+xml">  消息</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
